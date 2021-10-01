@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun firstCoroutine() {
+    private fun firstCoroutine() {
         repeat(3) {
             GlobalScope.launch {
                 Log.d("Coroutine","Hi from ${Thread.currentThread()}")
