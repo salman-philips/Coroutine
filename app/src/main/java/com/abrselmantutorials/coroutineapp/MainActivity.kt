@@ -3,6 +3,8 @@ package com.abrselmantutorials.coroutineapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -11,19 +13,17 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-   private fun raceCondition() {
-        var count = 0
-        for (i in 1..50) {
-            Thread {
-                count += 1
-                Log.d("Race Condition", "Thread: $i count: $count")
-            }.start()
+    fun firstCoroutine() {
+        repeat(3) {
+            GlobalScope.launch {
+                Log.d("Coroutine","Hi from ${Thread.currentThread()}")
+            }
         }
     }
 
 
     override fun onResume() {
         super.onResume()
-        raceCondition()
+        firstCoroutine()
     }
 }
